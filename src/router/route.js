@@ -8,6 +8,11 @@ export const blogRouter = [
     path: '/select',
     name: 'select',
     component: () => import('@/pages/select')
+  },
+  {
+    path: '/pagination',
+    name: 'pagination',
+    component: () => import('@/pages/pagination')
   }
 ]
 
