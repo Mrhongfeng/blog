@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table height="520" :data="tableData" style="width: 100%">
+    <el-table height="520" :data="tableData" style="width: 100%" border>
       <template v-for="(item, index) in columnData">
         <el-table-column
           :prop="item.prop"
@@ -28,27 +28,32 @@
 export default {
   name: 'jyx-pagination',
   props: {
+    // 分页数据总数
     total: {
       type: Number,
       default: 1000,
       required: false
     },
+    // 单页数据量
     pagesize: {
       type: Number,
       default: 10,
       required: false
     },
+    // 当前页码
     currentPage: {
       type: Number,
       default: 1,
       required: false
     },
+    // 表格数据
     tableData: {
       type: Array,
       // eslint-disable-next-line vue/require-valid-default-prop
       default: [],
       required: false
     },
+    // 表头数据
     columnData: {
       type: Array,
       // eslint-disable-next-line vue/require-valid-default-prop
@@ -57,6 +62,7 @@ export default {
     }
   },
   methods: {
+    // 以下两个函数均是触发父组件的handleChange事件，从而实现点击分页的功能按钮后，子组件向父组件传参
     handleCurrentChange: function (currentPage) {
       this.$emit('handleChange', this.pagesize, currentPage)
     },
