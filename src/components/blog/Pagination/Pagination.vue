@@ -58,12 +58,10 @@ export default {
   },
   methods: {
     handleCurrentChange: function (currentPage) {
-      this.currentPage = currentPage
-      this.$emit('handleChange', this.pagesize, this.currentPage)
+      this.$emit('handleChange', this.pagesize, currentPage)
     },
     handleSizeChange: function (pageSize) {
-      this.pagesize = pageSize
-      this.$emit('handleChange', this.pagesize, this.currentPage)
+      this.$emit('handleChange', pageSize, this.currentPage)
     }
   }
 }
