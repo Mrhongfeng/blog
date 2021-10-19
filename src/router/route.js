@@ -13,6 +13,11 @@ export const blogRouter = [
     path: '/pagination',
     name: 'pagination',
     component: () => import('@/pages/pagination')
+  },
+  {
+    path: '/inputphone',
+    name: 'inputphone',
+    component: () => import('@/pages/inputphone')
   }
 ]
 
