@@ -18,6 +18,11 @@ export const blogRouter = [
     path: '/inputphone',
     name: 'inputphone',
     component: () => import('@/pages/inputphone')
+  },
+  {
+    path: '/carouselform',
+    name: 'carouselform',
+    component: () => import('@/pages/carouselform')
   }
 ]
 
