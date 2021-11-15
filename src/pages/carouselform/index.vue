@@ -3,7 +3,7 @@
         <el-table :data="tableData">
             <el-table-column type="expand">
                 <template slot-scope="props">
-                    <el-carousel trigger="click" height="150px">
+                    <!-- <el-carousel trigger="click" class="carousel-list">
                         <el-carousel-item
                             v-for="item in props.row.list"
                             :key="item"
@@ -25,7 +25,44 @@
                                 </el-form-item>
                             </el-form>
                         </el-carousel-item>
-                    </el-carousel>
+                    </el-carousel> -->
+                    <swiper
+                        :options="swiperOption"
+                        ref="mySwiper"
+                        @someSwiperEvent="callback"
+                    >
+                        <swiper-slide
+                            v-for="item in props.row.list"
+                            :key="item"
+                            class="carousel-item"
+                        >
+                            <el-form
+                                label-position="left"
+                                inline
+                                class="demo-table-expand"
+                            >
+                                <el-form-item label="商品 ID">
+                                    <span>{{ item.id }}</span>
+                                </el-form-item>
+                                <el-form-item label="所属店铺">
+                                    <span>{{ item.shop }}</span>
+                                </el-form-item>
+                                <el-form-item label="店铺 ID">
+                                    <span>{{ item.shopId }}</span>
+                                </el-form-item>
+                            </el-form>
+                        </swiper-slide>
+                        <!-- <div class="swiper-pagination" slot="pagination"></div>
+                        <div
+                            class="swiper-button-prev"
+                            slot="button-prev"
+                        ></div>
+                        <div
+                            class="swiper-button-next"
+                            slot="button-next"
+                        ></div>
+                        <div class="swiper-scrollbar" slot="scrollbar"></div> -->
+                    </swiper>
                 </template>
             </el-table-column>
             <el-table-column label="商品 ID" prop="id"> </el-table-column>
@@ -36,6 +73,9 @@
 </template>
 
 <script>
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 export default {
   data () {
     return {
@@ -92,8 +132,30 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      swiperOption: {
+        loop: true,
+        autoplay: {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false
+        }
+        // // 显示分页
+        // pagination: {
+        //   el: '.swiper-pagination',
+        //   clickable: true // 允许分页点击跳转
+        // },
+        // // 设置点击箭头
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev'
+        // }
+      }
     }
+  },
+  components: {
+    swiper,
+    swiperSlide
   }
 }
 </script>
@@ -125,7 +187,11 @@ export default {
     background-color: #d3dce6;
 }
 
-.carousel-item {
-  height: auto;
-}
+// .carousel-item {
+//     position: relative;
+//     height: auto;
+// }
+// .carousel-list /deep/ .el-carousel__container {
+//     height: auto;
+// }
 </style>
